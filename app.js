@@ -25,8 +25,18 @@ app.get("/about",(req,res)=>{
 
 app.get("/contact",(req,res)=>{
   res.render("contact.ejs",{contact:"CONTACT",contactContent:contactContent});
-})
+});
 
+app.get("/post",(req,res)=>{
+
+  res.render("post.ejs");
+
+});
+
+app.post("/",(req,res)=>{
+  const userInput = req.body.postContent;
+  console.log(userInput);
+})
 
 
 
