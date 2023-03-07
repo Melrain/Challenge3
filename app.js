@@ -12,47 +12,45 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/",(req,res)=>{
-  res.render("home.ejs",{home:"HOME",homeContent:homeStartingContent});
+app.get("/", (req, res) => {
+  res.render("home.ejs", { home: "HOME", homeContent: homeStartingContent, posts: posts });
 });
 
-app.get("/about",(req,res)=>{
-  res.render("about.ejs",{about:"ABOUT",aboutContent:aboutContent});
+app.get("/about", (req, res) => {
+  res.render("about.ejs", { about: "ABOUT", aboutContent: aboutContent });
 })
 
-app.get("/contact",(req,res)=>{
-  res.render("contact.ejs",{contact:"CONTACT",contactContent:contactContent});
+app.get("/contact", (req, res) => {
+  res.render("contact.ejs", { contact: "CONTACT", contactContent: contactContent });
 });
 
-app.get("/post",(req,res)=>{
+app.get("/compose", (req, res) => {
 
   res.render("post.ejs");
 
 });
 
-const posts = [];
+let posts = [];
 
-app.post("/",(req,res)=>{
+app.post("/", (req, res) => {
 
   const userInput = req.body.postContent;
   const title = req.body.title;
   const post = {
-    "title":"",
-    "body":userInput
+    "title": "",
+    "body": userInput
   }
 
   posts.push(post);
+  console.log(posts);
+  res.render("home.ejs", {
+    homeContent: homeStartingContent,
+    posts: posts
+  });
 
-  res.render("home.ejs",{
-    homeContent:homeStartingContent,
-    posts:posts});
-
-  res.redirect("/");
-
-  
 })
 
 
@@ -65,6 +63,6 @@ app.post("/",(req,res)=>{
 
 
 
-app.listen(3000, function() {
+app.listen(3000, function () {
   console.log("Server started on port 3000");
 });

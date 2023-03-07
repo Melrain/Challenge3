@@ -1,0 +1,31 @@
+
+
+<body class="container">
+    <% include partials/header%>
+        <h1>Compose</h1>
+        <form action="/compose" method="post">
+            <div class>
+                <label>Title</label>
+                <br>
+                <input class="container form-floating form-control" type="text-headline" name="title" id="">
+            </div>
+
+            <br>
+
+            <div class=>
+                <label>Comments</label>
+                <textarea class="form-control"  name = "postContent"
+                    style="height: 100px">
+                </textarea>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+        <% include partials/footer %>
+
+
+</body>
+
+</html>
