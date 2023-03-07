@@ -33,9 +33,26 @@ app.get("/post",(req,res)=>{
 
 });
 
+const posts = [];
+
 app.post("/",(req,res)=>{
+
   const userInput = req.body.postContent;
-  console.log(userInput);
+  const title = req.body.title;
+  const post = {
+    "title":"",
+    "body":userInput
+  }
+
+  posts.push(post);
+
+  res.render("home.ejs",{
+    homeContent:homeStartingContent,
+    posts:posts});
+
+  res.redirect("/");
+
+  
 })
 
 

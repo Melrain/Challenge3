@@ -1,31 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>post</title>
 
-    
-</head>
+
 <body class="container">
     <% include partials/header%>
-    <h1>Compose</h1>
-    <form action="/" method="post">
-        <div class>
-            <label for="title">Title</label>
-            <input type="text-headline" name="postContent" id="">
-        </div>
-        <div>
-            <label for="text-body">Post</label>
-            <input type="text-body" name = "">
-        </div>
+        <h1>Compose</h1>
+        <form action="/" method="post">
+            <div class>
+                <label>Title</label>
+                <br>
+                <input class="container form-floating form-control" type="text-headline" name="title" id="">
+            </div>
 
-        <label for="button">提交</label>
-        <button type="submit">提交</button>
-    </form>
-    <% include partials/footer %>
+            <br>
 
-    
+            <div class=>
+                <label>Comments</label>
+                <textarea class="form-control"  name = "postContent"
+                    style="height: 100px">
+                </textarea>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+        <% include partials/footer %>
+
+
 </body>
+
 </html>
