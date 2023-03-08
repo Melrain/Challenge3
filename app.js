@@ -29,8 +29,19 @@ app.get("/contact", (req, res) => {
 
 app.get("/compose", (req, res) => {
 
-  res.render("post.ejs");
+  res.render("compose.ejs");
 
+});
+
+app.get('/compose/:post', (req, res) => {
+  for (let i = 0; i < posts.length; i++) {
+    const element = posts[i];
+    if(element.title === req.params.post){
+      console.log("match found!");
+    }else{
+      console.log("no match found!");
+    }
+  };
 });
 
 let posts = [];
@@ -40,17 +51,15 @@ app.post("/", (req, res) => {
   const userInput = req.body.postContent;
   const title = req.body.title;
   const post = {
-    "title": "",
+    "title": title,
     "body": userInput
   }
 
   posts.push(post);
-  console.log(posts);
   res.render("home.ejs", {
     homeContent: homeStartingContent,
     posts: posts
   });
-
 })
 
 

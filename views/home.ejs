@@ -4,8 +4,15 @@
         <p>
             <%=homeContent%>
         </p>
-        <% console.log(posts) %>
-        <% include partials/footer%>
+        
+        <% for( let i = 0; i < posts.length; i++ ) { %>
+            <h1><%= posts[i].title %></h1>
+            <body>
+                <%= posts[i].body %>
+            </body>
+        <% } %>
+
+<% include partials/footer%>
 </body>
 
 </html>
