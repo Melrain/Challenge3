@@ -33,11 +33,15 @@ app.get("/compose", (req, res) => {
 
 });
 
+//用网址访问
 app.get('/compose/:post', (req, res) => {
   for (let i = 0; i < posts.length; i++) {
     const element = posts[i];
-    if(element.title === req.params.post){
-      console.log("match found!");
+    if(element.title.toLowerCase() === req.params.post.toLowerCase()){
+      res.render("post.ejs",{postTitle:title,
+      postBody:userInput
+    });
+      console.log("此处渲染post.ejs")
     }else{
       console.log("no match found!");
     }
@@ -45,20 +49,24 @@ app.get('/compose/:post', (req, res) => {
 });
 
 let posts = [];
+let userInput = "";
+let title = "";
+let post = "";
 
 app.post("/", (req, res) => {
 
-  const userInput = req.body.postContent;
-  const title = req.body.title;
-  const post = {
+  userInput = req.body.postContent;
+  title = req.body.title;
+  post = {
     "title": title,
-    "body": userInput
+    "body": userInput.slice(0,150)+"..."
   }
 
   posts.push(post);
   res.render("home.ejs", {
     homeContent: homeStartingContent,
-    posts: posts
+    posts: posts,
+    postLink:"compose/"+title
   });
 })
 
